@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🌐 Redirecting…</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #f9f9f9, #ececec);
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #333;
+    }
+    .countdown {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #e63946;
+      margin: 15px 0;
+    }
+    .note {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #555;
+    }
+    a {
+      color: #1d3557;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>⏳ Redirecting to HTTP in <span class="countdown">5</span> seconds…</h1>
+  <p class="note">🔗 If it doesn’t redirect automatically, <a id="manual" href="#">click here</a>.</p>
+  <p class="note">⚠️ Note: On GitHub Pages (<code>*.github.io</code>) HTTPS is always enforced 🔒</p>
+
+  <script>
+    let seconds = 5;
+    const countdownEl = document.querySelector('.countdown');
+    const manualLink = document.getElementById('manual');
+
+    // Build HTTP target URL
+    const httpUrl = 'http://' + window.location.hostname + window.location.pathname + window.location.search + window.location.hash;
+    manualLink.href = httpUrl;
+
+    const timer = setInterval(() => {
+      seconds--;
+      countdownEl.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(timer);
+        window.location.href = httpUrl;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
